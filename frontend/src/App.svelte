@@ -1,11 +1,12 @@
 <script>
-  let message;
+  import Router from "svelte-spa-router";
+  import Home from "./routes/Home.svelte";
+  import ReviewDetail from "./routes/ReviewDetail.svelte";
 
-  fetch("http://127.0.0.1:8000/hello").then((response) => {
-    response.json().then((json) => {
-      message = json.message
-    });
-  });
+  const routes = {
+    "/": Home,    // 주소에 매핑되는 컴포넌트로 <Home />을 등록했다. → Home.svelte
+    "/detail/:review_id": ReviewDetail,   // 리뷰 상세
+  };
 </script>
 
-<h1>{message}</h1>
+<Router {routes} />
